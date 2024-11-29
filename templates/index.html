@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Прогноз погоды</h1>
+
+    <form method="GET" action="{{ url_for('index') }}">
+        <label for="city">Введите название города:</label>
+        <input type="text" id="city" name="city" placeholder="Москва" value="{{ request.args.get('city', 'Москва') }}">
+        <button type="submit">Получить прогноз</button>
+    </form>
+
+    {% if weather %}
+        <h2>Прогноз на 3 дня для города {{ request.args.get('city', 'Moscow') }}</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Температура днем (°C)</th>
+                    <th>Температура ночью (°C)</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in weather %}
+                <tr>
+                    <td>{{ day.date }}</td>
+                    <td>{{ day.temp_day }}°C</td>
+                    <td>{{ day.temp_night }}°C</td>
+                    <td>{{ day.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Нет данных о погоде. Проверьте правильность ввода города или попробуйте позже.</p>
+    {% endif %}
+
+{% endblock %}

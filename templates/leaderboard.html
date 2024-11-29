@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Таблица лидеров</h1>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Счет</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.display_name }}</td>
+        <td>{{ user.score }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

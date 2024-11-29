@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Викторина</h1>
+<p class="score-text">Ваш текущий счет: {{ user_score }}</p>
+<p class="score-text">Текущий счет: {{ current_score }}</p>
+
+<div class="question-container">
+    <p>Вопрос: {{ question.question_text }}</p>
+</div>
+
+<form method="POST" action="{{ url_for('submit_answer') }}">
+    {{ form.hidden_tag() }}
+
+    <input type="hidden" name="question_id" value="{{ question.id }}">
+
+    <div class="options-container">
+        <input type="radio" id="option1" name="selected_option" value="1">
+        <label for="option1" class="option-label">{{ question.option1 }}</label>
+
+        <input type="radio" id="option2" name="selected_option" value="2">
+        <label for="option2" class="option-label">{{ question.option2 }}</label>
+
+        <input type="radio" id="option3" name="selected_option" value="3">
+        <label for="option3" class="option-label">{{ question.option3 }}</label>
+
+        <input type="radio" id="option4" name="selected_option" value="4">
+        <label for="option4" class="option-label">{{ question.option4 }}</label>
+    </div>
+
+    <button type="submit">Ответить</button>
+</form>
+{% endblock %}

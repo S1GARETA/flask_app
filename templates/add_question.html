@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Добавить новый вопрос для викторины</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.question_text.label }}<br>
+        {{ form.question_text() }}<br>
+    </div>
+    <div>
+        {{ form.option1.label }}<br>
+        {{ form.option1() }}<br>
+    </div>
+    <div>
+        {{ form.option2.label }}<br>
+        {{ form.option2() }}<br>
+    </div>
+    <div>
+        {{ form.option3.label }}<br>
+        {{ form.option3() }}<br>
+    </div>
+    <div>
+        {{ form.option4.label }}<br>
+        {{ form.option4() }}<br>
+    </div>
+    <div>
+        {{ form.correct_option.label }}<br>
+        {{ form.correct_option() }}<br>
+    </div>
+    <button type="submit">Добавить вопрос</button>
+</form>
+{% endblock %}
